@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: service-a
+      cloud:    consul:      discovery:        instance-id: ${spring.application.name}.${random.value}
+    loadbalancer:      ribbon:        enabled: false
+        
+management:  endpoints:    web:      exposure:        include:        - '*'
+    
+server:  port: 0
+  
+logging:  file:    name: /var/tmp/logs/service-a/service-a
