@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: api-provider
+  cloud:    consul:      discovery:        instance-id: ${spring.application.name}.${random.value}
+    loadbalancer:      ribbon:        enabled: false
+
+server:  port: 0
+  
+management:  endpoints:    web:      exposure:        include:        - '*'
+
+logging:  file:    name: /var/tmp/logs/api-provider/api-provider
