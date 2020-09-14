@@ -59,20 +59,24 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- <dependency> <groupId>org.springframework.cloud</groupId> <artifactId> 
+			spring-cloud-starter-circuitbreaker-reactor-resilience4j </artifactId> </dependency> -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>
-				spring-cloud-starter-circuitbreaker-reactor-resilience4j
-			</artifactId>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-spring-boot2</artifactId>
+			<version>1.3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
 			<artifactId>resilience4j-micrometer</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
 			<artifactId>resilience4j-timelimiter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-reactor</artifactId>
 		</dependency>
 	</dependencies>
 

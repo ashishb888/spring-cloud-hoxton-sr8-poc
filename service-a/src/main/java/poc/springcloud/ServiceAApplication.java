@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import poc.springcloud.SomeData.SomeDataBuilder;
 import reactor.core.publisher.Flux;
 
@@ -45,11 +47,17 @@ class ServiceARestController {
 		return dc.getServices().stream().map(serviceId -> dc.getInstances(serviceId)).collect(Collectors.toList());
 	}
 
+	@CircuitBreaker(fallbackMethod = "defaultData", name = "fallback")
 	@GetMapping(path = "/somedata", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
 	Flux<SomeData> someData() {
 		return webClientBuilder.build().get().uri("http://api-provider/random-number").retrieve()
 				.bodyToFlux(Integer.class).map(randomNumer -> new SomeDataBuilder().id(randomNumer).cityCode(cityCode)
 						.message("All ok!").build());
+	}
+
+	@GetMapping(path = "/default-data", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	Flux<SomeData> defaultData(Exception e) {
+		return Flux.just(new SomeDataBuilder().id(0).cityCode(cityCode).message("Something went wrong!").build());
 	}
 }
 
