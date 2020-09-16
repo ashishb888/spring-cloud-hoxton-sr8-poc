@@ -19,7 +19,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import poc.springcloud.SomeData.SomeDataBuilder;
 import reactor.core.publisher.Flux;
 
