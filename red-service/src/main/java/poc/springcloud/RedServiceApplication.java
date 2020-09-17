@@ -19,6 +19,11 @@ class RedRestController {
 
 	@GetMapping("/")
 	public String hello() {
+		return "<h2 style='color:Red;'>Defalut page</h2>";
+	}
+
+	@GetMapping("/red-service")
+	public String helloRed() {
 		return "<h2 style='color:Red;'>Hello from Red service</h2>";
 	}
 }
