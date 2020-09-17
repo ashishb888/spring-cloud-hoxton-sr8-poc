@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: config-server
+  cloud:    config:      server:
+        git:          uri: https://github.com/ashishb888/spring-cloud-hoxton-sr8-poc
+          search-paths:          - 'config-repo/{application}'    consul:      discovery:
+        instance-id: ${spring.application.name}
+        #instance-id: ${spring.application.name}.${random.value}
+            
+server:  port: 0
+  
+logging:  file:    name: /var/tmp/logs/config-server/config-server
+  level:    root: info
+    poc.springcloud: debug
