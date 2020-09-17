@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}.${random.value}
+    loadbalancer:
+      ribbon:
+        enabled: false
+        
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
+
+server:
+  port: 7000
+  
+logging:
+  file:
+    name: /var/tmp/logs/api-gateway/api-gateway
+  level:
+    root: info
+    poc.springcloud: debug
+    
+#consul agent -server=true -bootstrap=true -ui -bind='192.168.43.17' -data-dir='.//consule'
