@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: red-service
+  
+  cloud:
+    consul:
+      port: 8500
+      discovery:
+        instance-id: ${spring.application.name}.${random.value}
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
+
+server:
+  port: 0
+  
+logging:
+  file:
+    name: /var/tmp/logs/red-service/red-service            
