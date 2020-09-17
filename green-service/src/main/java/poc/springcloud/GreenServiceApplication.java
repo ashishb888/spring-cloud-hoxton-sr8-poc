@@ -19,6 +19,6 @@ class GreenRestController {
 
 	@GetMapping("/")
 	public String hello() {
-		return "<b>Hello from Green service</b>";
+		return "<h2 style='color: Green;'>Hello from Green service</h2>";
 	}
 }
